@@ -1,0 +1,61 @@
+1. Buat Database
+create database myshop;
+
+2. Membuat Table diDalam Database
+Table users:
+create table users(
+    -> id integer AUTO_INCREMENT PRIMARY KEY,
+    -> name varchar (255),
+    -> email varchar (255),
+    -> password varchar (255));
+
+Table categories:
+create table categories(
+    -> id integer AUTO_INCREMENT PRIMARY KEY,
+    -> name varchar(255));
+
+Table items:
+create table items(
+    -> id integer AUTO_INCREMENT PRIMARY KEY,
+    -> name varchar (255),
+    -> description varchar (255),
+    -> price integer,
+    -> stock integer,
+    -> category_id integer,
+    -> foreign key (category_id) references categories(id));
+
+3. Memasukkan Data pada Table
+Table users:
+	1.INSERT INTO users(name,email) values('John Doe','john@doe.com');
+	2.INSERT INTO users(name,email) values('Jane Doe','jane@doe.com');
+
+Table categories:
+	1. INSERT INTO categories (name) values ('gadget');
+	2. INSERT INTO categories (name) values ('cloth');
+	3. INSERT INTO categories (name) values ('men');
+	4. INSERT INTO into categories (name) values ('women');
+	5. INSERT INTO categories (name) values ('branded');
+
+Table items:
+	1. INSERT INTO items (name,description) values('Sumsang b50','hape keren dari merek sumsang');
+	2. INSERT INTO items (name,description) values('Uniklooh','baju keren dari brand ternama');
+	3. INSERT INTO items (name,description) values('IMHO Watch','jam tangan anak yang jujur banget');
+
+
+4. Mengambil data dari Database
+
+a. mengambil data dari users:
+select id,name,email from users;
+
+b. mengambil data dari items:
+ 1. mengambil sebuah data dari table items dengan harga di atas satu juta
+select * from items where price > 1000000;
+ 2. mengambil sebuah data dari table items dengan nama serupa
+select * from items where name like '%uniklo%';
+
+c. Menampilkan data items join dengan kategori
+SELECT categories.id, categories.name,items.name, items.description FROM items INNER JOIN categories ON categories.id=items.id;
+
+
+5. Mengubah Data dari Database
+UPDATE items SET name='sumsang b50', price=2500000 where id=1;
